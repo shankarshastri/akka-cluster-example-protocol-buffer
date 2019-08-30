@@ -29,7 +29,7 @@ class TransformationFrontend extends Actor {
       jobCounter += 1
       backends(jobCounter % backends.size) forward job
 
-    case BackendRegistration if !backends.contains(sender()) =>
+    case _:BackendRegistration if !backends.contains(sender()) =>
       context watch sender()
       backends = backends :+ sender()
 
