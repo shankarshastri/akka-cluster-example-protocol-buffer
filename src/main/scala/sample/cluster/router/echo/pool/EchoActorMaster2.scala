@@ -7,12 +7,12 @@ import com.typesafe.config.ConfigFactory
 import sample.cluster.EchoActor
 import sample.cluster.router.echo.cluster.Ping
 
-object EchoActorMaster extends App {
+object EchoActorMaster2 extends App {
 
-  val commonConfig = ConfigFactory.load("application-cluster-router.conf")
+  val commonConfig = ConfigFactory.load("application-cluster-router-pool.conf")
   implicit val system1 = ActorSystem("cluster", ConfigFactory.parseString(
     """
-      |akka.remote.netty.tcp.port = 2551
+      |akka.remote.netty.tcp.port = 2554
     """.stripMargin).withFallback(commonConfig))
   val cluster = Cluster(system1)
   val pool = system1.actorOf(FromConfig.props(Props[EchoActor]), "echo")

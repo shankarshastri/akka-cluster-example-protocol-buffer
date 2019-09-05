@@ -5,7 +5,7 @@ import akka.cluster.Cluster
 import com.typesafe.config.ConfigFactory
 
 object EchoNode2 extends App {
-  val commonConfig = ConfigFactory.load("application-cluster-router.conf")
+  val commonConfig = ConfigFactory.load("application-cluster-router-pool.conf")
   implicit val system1 = ActorSystem("cluster", ConfigFactory.parseString(
     """
       |akka.remote.netty.tcp.port = 0
